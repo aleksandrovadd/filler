@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-int		check_map_fig(t_game *game, int x, int y)
+int		ch_map_f(t_game *game, int x, int y)
 {
 	int i;
 

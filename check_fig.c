@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-int	check_fig(t_game *game, t_coord *coord, int x, int y)
+int		check_fig(t_game *game, t_coord *coord, int x, int y)
 {
 	int a;
 	int b;
@@ -22,10 +22,9 @@ int	check_fig(t_game *game, t_coord *coord, int x, int y)
 	a = 0;
 	i = 0;
 	sum = 0;
-	while (a < game->figure_height)
+	while (a < game->figure_height && (b = -1))
 	{
-		b = 0;
-		while (b < game->figure_width)
+		while (++b < game->figure_width)
 		{
 			if (game->figure[a][b] == '*' &&
 			game->map[coord->my_x - x + a][coord->my_y - y + b] == game->player)
@@ -35,14 +34,13 @@ int	check_fig(t_game *game, t_coord *coord, int x, int y)
 			if (game->figure[a][b] == '*' &&
 			game->map[coord->my_x - x + a][coord->my_y - y + b] == game->enemy)
 				return (-1);
-			b++;
 		}
 		a++;
 	}
 	return ((i != 1) ? -1 : sum);
 }
 
-int	check_map(t_game *game, t_coord *coord, int x, int y)
+int		check_map(t_game *game, t_coord *coord, int x, int y)
 {
 	if ((coord->my_x - x >= 0 && coord->my_y - y >= 0) &&
 		(coord->my_x - x + game->figure_height <= game->map_height
@@ -51,7 +49,14 @@ int	check_map(t_game *game, t_coord *coord, int x, int y)
 	return (0);
 }
 
-int	check_figure(t_game *game, t_coord *coord)
+void	hrenka(t_coord *coord, int oh, int x, int y)
+{
+	coord->sum = oh;
+	coord->fig_x = x;
+	coord->fig_y = y;
+}
+
+int		check_figure(t_game *game, t_coord *coord)
 {
 	int x;
 	int	y;
@@ -68,11 +73,7 @@ int	check_figure(t_game *game, t_coord *coord)
 			{
 				oh = check_fig(game, coord, x, y);
 				if (oh > 0 && (oh < coord->sum || coord->sum == -1))
-				{
-					coord->sum = oh;
-					coord->fig_x = x;
-					coord->fig_y = y;
-				}
+					hrenka(coord, oh, x, y);
 			}
 			y++;
 		}

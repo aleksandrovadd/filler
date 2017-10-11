@@ -88,14 +88,13 @@ void	my_coord(t_game *game, t_coord *coord)
 	int	y;
 	int	ph;
 
-	x = 0;
+	x = -1;
 	ph = -1;
-	while (x < game->map_height)
+	while (++x < game->map_height && (y = -1))
 	{
-		y = 0;
-		while (y < game->map_width)
+		while (++y < game->map_width)
 		{
-			if (game->map[x][y] == game->player && (check_map_fig(game, x, y) == 1))
+			if (game->map[x][y] == game->player && (ch_map_f(game, x, y) == 1))
 			{
 				coord->my_x = x;
 				coord->my_y = y;
@@ -107,9 +106,7 @@ void	my_coord(t_game *game, t_coord *coord)
 					coord->en_y = y - coord->fig_y;
 				}
 			}
-			y++;
 		}
-		x++;
 	}
 	ft_printf("%d %d\n", coord->en_x, coord->en_y);
 }
