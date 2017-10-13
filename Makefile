@@ -14,7 +14,7 @@ CC = @gcc -Wall -Wextra -Werror
 
 NAME = filler
 
-SRC = filler.c reading.c choose_move.c check_fig.c ft_check_fig.c
+SRC = filler.c reading.c choose_move.c check_fig.c ft_check_fig.c 
 
 LIB = libft.a
 LIBPRINT = libftprintf.a

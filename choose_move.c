@@ -82,11 +82,19 @@ void	enemy_coord(t_game *game, t_coord *coord)
 	}
 }
 
+int		figure_parse(t_coord *coord, int x, int y, int ph)
+{
+	ph = coord->sum;
+	coord->en_x = x - coord->fig_x;
+	coord->en_y = y - coord->fig_y;
+	return (ph);
+}
+
 void	my_coord(t_game *game, t_coord *coord)
 {
 	int	x;
 	int	y;
-	int	ph;
+	int ph;
 
 	x = -1;
 	ph = -1;
@@ -100,13 +108,12 @@ void	my_coord(t_game *game, t_coord *coord)
 				coord->my_y = y;
 				check_figure(game, coord);
 				if (coord->sum > 0 && (coord->sum < ph || ph == -1))
-				{
-					ph = coord->sum;
-					coord->en_x = x - coord->fig_x;
-					coord->en_y = y - coord->fig_y;
-				}
+					ph = figure_parse(coord, x, y, ph);
 			}
 		}
 	}
-	ft_printf("%d %d\n", coord->en_x, coord->en_y);
+	if (ph == -1)
+		ft_printf("%d %d\n", -1, -1);
+	else
+		ft_printf("%d %d\n", coord->en_x, coord->en_y);
 }
