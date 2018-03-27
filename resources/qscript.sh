@@ -1,2 +1,1 @@
-./filler_vm -p2 ../filler -p1 ./players/carli.filler -f maps/map00
-
+./filler_vm -p1 players/hcao.filler -p2 ../daleksan.filler -f maps/map01

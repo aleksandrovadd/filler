@@ -1,8 +1,14 @@
-# fillit
-Fillit is a project that let you discover and/or familiarize yourself with a recurring
-problematic in programming: searching the optimal solution among a huge set of possibilities,
-in a respectable timing. In this particular project, you needed to find a way to
-assemble a given Tetriminos set altogether in the smallest possible square.
+# filler
 
-A Tetriminos is a 4-blocks geometric figure you probably already heard of, thanks to
-the popular game Tetris.
+Create a player to fight other students on the world famous (or infamous) Filler board.
+The concept is simple: two players gain points by placing on a board, one after the other,
+the game piece obtained by the game master (in the form of an executable Ruby program).
+The game ends when the game piece cannot be placed anymore. 
+
+To run the project you need to run Makefile in the main folder and then go to resourses
+and run the qscript: sh qscript.sh.
+
+To colorize the output you should run the zscript.sh in resourses.
+
+In _script.sh you can change the enemy for daleksan.filler from the folder players/ or
+change map from the folder maps/. Also you can swap players (p1 to p2 and back).
